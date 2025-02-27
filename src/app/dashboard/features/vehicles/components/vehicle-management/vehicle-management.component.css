@@ -1,0 +1,16 @@
+.vehicle-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.vehicle-card {
+  width: 300px;
+}
+
+.add-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}

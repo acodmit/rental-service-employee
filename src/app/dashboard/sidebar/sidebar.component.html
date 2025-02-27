@@ -1,0 +1,36 @@
+<nav>
+    <ul>
+        <!-- Admin Links -->
+        <li *ngIf="isAdmin || isManager">
+            <a routerLink="/dashboard/vehicles" routerLinkActive="active">Vehicle Management</a>
+        </li>
+        <li *ngIf="isAdmin">
+            <a routerLink="/dashboard/users" routerLinkActive="active">User Management</a>
+        </li>
+        <li *ngIf="isAdmin">
+            <a routerLink="/dashboard/manufacturers" routerLinkActive="active">Manufacturer Management</a>
+        </li>
+
+        <!-- Operator Links -->
+        <li *ngIf="isOperator || isManager">
+            <a routerLink="/dashboard/rentals" routerLinkActive="active">Rental Overview</a>
+        </li>
+        <li *ngIf="isOperator || isManager">
+            <a routerLink="/dashboard/clients" routerLinkActive="active">Client Management</a>
+        </li>
+        <li *ngIf="isOperator || isManager">
+            <a routerLink="/dashboard/faults" routerLinkActive="active">Fault Reporting</a>
+        </li>
+        <li *ngIf="isOperator || isManager">
+            <a routerLink="/dashboard/vehicle-map" routerLinkActive="active">Vehicle Map</a>
+        </li>
+
+        <!-- Manager Links -->
+        <li *ngIf="isManager">
+            <a routerLink="/dashboard/statistics" routerLinkActive="active">Statistics</a>
+        </li>
+        <li *ngIf="isManager">
+            <a routerLink="/dashboard/pricing" routerLinkActive="active">Pricing</a>
+        </li>
+    </ul>
+</nav>

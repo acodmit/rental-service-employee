@@ -1,0 +1,25 @@
+/* footer.component.css */
+footer {
+  background-color: #3f51b5; /* Match Material primary color */
+  color: white;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.social-links {
+  display: flex;
+  gap: 8px;
+}
+
+.social-links a {
+  color: white;
+}

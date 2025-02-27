@@ -1,0 +1,59 @@
+<h2 mat-dialog-title>Add New {{ data.vehicleType | titlecase }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="vehicleForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Model</mat-label>
+      <input matInput formControlName="model" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Acquisition Date</mat-label>
+      <input matInput type="date" formControlName="acquisitionDate" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Purchase Price</mat-label>
+      <input matInput type="number" formControlName="purchasePrice" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Image URL</mat-label>
+      <input matInput formControlName="imageUrl" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Hourly Rate</mat-label>
+      <input matInput type="number" formControlName="hourlyRate" required />
+    </mat-form-field>
+
+    <!-- Bike-specific field -->
+    <ng-container *ngIf="data.vehicleType === 'bike'">
+      <mat-form-field appearance="fill">
+        <mat-label>Range (km)</mat-label>
+        <input matInput type="number" formControlName="rangeKm" required />
+      </mat-form-field>
+    </ng-container>
+
+    <!-- Car-specific field -->
+    <ng-container *ngIf="data.vehicleType === 'car'">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+      </mat-form-field>
+    </ng-container>
+
+    <!-- Scooter-specific field -->
+    <ng-container *ngIf="data.vehicleType === 'scooter'">
+      <mat-form-field appearance="fill">
+        <mat-label>Max Speed (km/h)</mat-label>
+        <input matInput type="number" formControlName="maxSpeedKmh" required />
+      </mat-form-field>
+    </ng-container>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button color="primary" (click)="onSubmit()" [disabled]="vehicleForm.invalid">
+    Save
+  </button>
+</mat-dialog-actions>
