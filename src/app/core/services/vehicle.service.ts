@@ -50,11 +50,21 @@ export class VehicleService {
     return this.http.delete<void>(`${this.baseUrl}/scooters/${id}`, this.createAuthHeaders());
   }
 
+  // New method for uploading CSV
+  uploadCSV(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file, file.name);
+
+    // Include authentication headers
+    const headers = this.createAuthHeaders().headers;
+    return this.http.post(`${this.baseUrl}/vehicles/upload-csv`, formData, { headers });
+  }
+
   private createAuthHeaders(): { headers: HttpHeaders } {
     const token = this.authService.getToken();
     return {
       headers: new HttpHeaders({
-        Authorization: token ? `Bearer ${token}` : ''
+        Authorization: token ? `Bearer ${token}` : '',
       }),
     };
   }

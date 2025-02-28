@@ -1,70 +1,85 @@
-<mat-tab-group>
+<mat-tab-group (selectedIndexChange)="onTabChange($event)">
   <!-- Bikes Tab -->
   <mat-tab label="Bikes">
     <div class="vehicle-list">
-      <mat-card *ngFor="let bike of bikes" class="vehicle-card">
+      <mat-card *ngFor="let vehicle of bikes" class="vehicle-card">
         <mat-card-header>
-          <mat-card-title>{{ bike.model }}</mat-card-title>
+          <mat-card-title>{{ vehicle.model }}</mat-card-title>
           <mat-card-subtitle>Bike</mat-card-subtitle>
         </mat-card-header>
+        <img mat-card-image [src]="vehicle.imageUrl" alt="{{ vehicle.model }}">
         <mat-card-content>
-          <p>Range: {{ bike.rangeKm }} km</p>
+          <p><strong>Manufacturer:</strong> {{ vehicle.manufacturer.name }}</p>
+          <p><strong>Acquisition Date:</strong> {{ vehicle.acquisitionDate }}</p>
+          <p><strong>Hourly Rate:</strong> ${{ vehicle.hourlyRate }}</p>
+          <p><strong>Range:</strong> {{ vehicle.rangeKm }} km</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="warn" (click)="deleteVehicle('bike', bike.id)">
+          <button mat-button color="warn" (click)="deleteVehicle('bike', vehicle.id, vehicle.model)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <button mat-fab color="primary" (click)="openAddVehicleDialog('bike')" class="add-button">
-      <mat-icon>add</mat-icon>
-    </button>
   </mat-tab>
 
   <!-- Cars Tab -->
   <mat-tab label="Cars">
     <div class="vehicle-list">
-      <mat-card *ngFor="let car of cars" class="vehicle-card">
+      <mat-card *ngFor="let vehicle of cars" class="vehicle-card">
         <mat-card-header>
-          <mat-card-title>{{ car.model }}</mat-card-title>
+          <mat-card-title>{{ vehicle.model }}</mat-card-title>
           <mat-card-subtitle>Car</mat-card-subtitle>
         </mat-card-header>
+        <img mat-card-image [src]="vehicle.imageUrl" alt="{{ vehicle.model }}">
         <mat-card-content>
-          <p>{{ car.description }}</p>
+          <p><strong>Manufacturer:</strong> {{ vehicle.manufacturer.name }}</p>
+          <p><strong>Acquisition Date:</strong> {{ vehicle.acquisitionDate }}</p>
+          <p><strong>Hourly Rate:</strong> ${{ vehicle.hourlyRate }}</p>
+          <p><strong>Description:</strong> {{ vehicle.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="warn" (click)="deleteVehicle('car', car.id)">
+          <button mat-button color="warn" (click)="deleteVehicle('car', vehicle.id, vehicle.model)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <button mat-fab color="primary" (click)="openAddVehicleDialog('car')" class="add-button">
-      <mat-icon>add</mat-icon>
-    </button>
   </mat-tab>
 
   <!-- Scooters Tab -->
   <mat-tab label="Scooters">
     <div class="vehicle-list">
-      <mat-card *ngFor="let scooter of scooters" class="vehicle-card">
+      <mat-card *ngFor="let vehicle of scooters" class="vehicle-card">
         <mat-card-header>
-          <mat-card-title>{{ scooter.model }}</mat-card-title>
+          <mat-card-title>{{ vehicle.model }}</mat-card-title>
           <mat-card-subtitle>Scooter</mat-card-subtitle>
         </mat-card-header>
+        <img mat-card-image [src]="vehicle.imageUrl" alt="{{ vehicle.model }}">
         <mat-card-content>
-          <p>Max Speed: {{ scooter.maxSpeedKmh }} km/h</p>
+          <p><strong>Manufacturer:</strong> {{ vehicle.manufacturer.name }}</p>
+          <p><strong>Acquisition Date:</strong> {{ vehicle.acquisitionDate }}</p>
+          <p><strong>Hourly Rate:</strong> ${{ vehicle.hourlyRate }}</p>
+          <p><strong>Max Speed:</strong> {{ vehicle.maxSpeedKmh }} km/h</p>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="warn" (click)="deleteVehicle('scooter', scooter.id)">
+          <button mat-button color="warn" (click)="deleteVehicle('scooter', vehicle.id, vehicle.model)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
     </div>
-    <button mat-fab color="primary" (click)="openAddVehicleDialog('scooter')" class="add-button">
-      <mat-icon>add</mat-icon>
-    </button>
   </mat-tab>
 </mat-tab-group>
+
+<!-- Shared Action Buttons -->
+<div class="action-buttons">
+  <button mat-fab color="primary" (click)="openAddVehicleDialog(selectedTab)" class="add-button">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-fab color="accent" (click)="openFileInput()" class="upload-button">
+    <mat-icon>upload</mat-icon>
+    <span class="button-text">Upload CSV</span>
+  </button>
+  <input #fileInput type="file" accept=".csv" (change)="onFileSelected($event)" class="file-input" />
+</div>
