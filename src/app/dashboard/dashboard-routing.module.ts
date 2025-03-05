@@ -2,12 +2,22 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { RoleGuard } from '../core/guards/role.guard';
+import {HomeComponent} from '../shared/home/home.component';
+import {AccountComponent} from '../shared/account/account.component';
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
     children: [
+      {
+        path: '', // Default child route for /dashboard
+        component: HomeComponent, // Display HomeComponent by default
+      },
+      {
+        path: 'account', // Route for the AccountComponent
+        component: AccountComponent,
+      },
       {
         path: 'vehicles',
         loadChildren: () => import('./features/vehicles/vehicles.module').then(m => m.VehiclesModule),

@@ -1,0 +1,40 @@
+.home-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background-color: #ffffff; /* White background for the card */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  max-width: 600px;
+  margin: 32px auto; /* Center the card */
+}
+
+.clock-container {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.clock {
+  font-size: 4rem;
+  font-weight: bold;
+  color: #3f51b5; /* Primary blue color */
+  margin: 0;
+}
+
+.welcome-message {
+  text-align: center;
+}
+
+.welcome-message h2 {
+  font-size: 2rem;
+  color: #3f51b5; /* Primary blue color */
+  margin-bottom: 16px;
+}
+
+.welcome-message p {
+  font-size: 1.2rem;
+  color: #666; /* Secondary text color */
+  line-height: 1.6;
+}

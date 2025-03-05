@@ -1,19 +1,28 @@
 // shared.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatToolbarModule } from '@angular/material/toolbar'; // Import Material modules
+// Import Material modules
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
+import {MatCard} from '@angular/material/card';
+import {RouterLink} from '@angular/router';
+import { AccountComponent } from './account/account.component';
+import {MatDivider} from '@angular/material/divider';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
     ConfirmDialogComponent,
+    HomeComponent,
+    AccountComponent,
   ],
   imports: [
     CommonModule,
@@ -24,6 +33,10 @@ import {MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle} from
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    MatCard,
+    RouterLink,
+    MatDivider,
+    MatProgressSpinner,
   ],
   exports: [
     HeaderComponent,

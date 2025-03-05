@@ -1,0 +1,163 @@
+<mat-card class="vehicle-list-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">Vehicle Details</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      This page provides an overview of all available vehicles.<br>
+      You can view detailed information about each vehicle by clicking the "Show Details" button.<br>
+      Use the tables below to explore bikes, cars, and scooters.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <!-- Bikes Table -->
+    <h3 class="table-title">Bikes</h3>
+    <mat-table [dataSource]="bikes" class="vehicle-table">
+      <ng-container matColumnDef="model">
+        <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> {{ bike.model }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer">
+        <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> {{ bike.manufacturer.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acquisitionDate">
+        <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> {{ bike.acquisitionDate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hourlyRate">
+        <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> ${{ bike.hourlyRate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="rangeKm">
+        <mat-header-cell *matHeaderCellDef> Range (km) </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> {{ bike.rangeKm }} km </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="isBroken">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let bike">
+          <mat-icon [ngClass]="{'broken-icon': bike.isBroken, 'working-icon': !bike.isBroken}">
+            {{ bike.isBroken ? 'error' : 'check_circle' }}
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let bike">
+          <button mat-button color="primary" (click)="viewVehicleDetails(bike.id, 'bike')">
+            Show Details
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="bikeColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: bikeColumns;" class="vehicle-row"></mat-row>
+    </mat-table>
+
+    <!-- Cars Table -->
+    <h3 class="table-title">Cars</h3>
+    <mat-table [dataSource]="cars" class="vehicle-table">
+      <ng-container matColumnDef="model">
+        <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+        <mat-cell *matCellDef="let car"> {{ car.model }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer">
+        <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
+        <mat-cell *matCellDef="let car"> {{ car.manufacturer.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acquisitionDate">
+        <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
+        <mat-cell *matCellDef="let car"> {{ car.acquisitionDate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hourlyRate">
+        <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
+        <mat-cell *matCellDef="let car"> ${{ car.hourlyRate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let car"> {{ car.description }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="isBroken">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let car">
+          <mat-icon [ngClass]="{'broken-icon': car.isBroken, 'working-icon': !car.isBroken}">
+            {{ car.isBroken ? 'error' : 'check_circle' }}
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let car">
+          <button mat-button color="primary" (click)="viewVehicleDetails(car.id, 'car')">
+            Show Details
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="carColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: carColumns;" class="vehicle-row"></mat-row>
+    </mat-table>
+
+    <!-- Scooters Table -->
+    <h3 class="table-title">Scooters</h3>
+    <mat-table [dataSource]="scooters" class="vehicle-table">
+      <ng-container matColumnDef="model">
+        <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> {{ scooter.model }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer">
+        <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> {{ scooter.manufacturer.name }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="acquisitionDate">
+        <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> {{ scooter.acquisitionDate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hourlyRate">
+        <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> ${{ scooter.hourlyRate }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="maxSpeedKmh">
+        <mat-header-cell *matHeaderCellDef> Max Speed (km/h) </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> {{ scooter.maxSpeedKmh }} km/h </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="isBroken">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let scooter">
+          <mat-icon [ngClass]="{'broken-icon': scooter.isBroken, 'working-icon': !scooter.isBroken}">
+            {{ scooter.isBroken ? 'error' : 'check_circle' }}
+          </mat-icon>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let scooter">
+          <button mat-button color="primary" (click)="viewVehicleDetails(scooter.id, 'scooter')">
+            Show Details
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="scooterColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: scooterColumns;" class="vehicle-row"></mat-row>
+    </mat-table>
+
+  </mat-card-content>
+</mat-card>

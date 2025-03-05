@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { VehicleService } from '../../../../../core/services/vehicle.service';
-import { VehicleFormDialogComponent } from '../vehicle-form-dialog/vehicle-form-dialog.component';
+import { VehicleFormDialogComponent } from './vehicle-form-dialog/vehicle-form-dialog.component';
 import { Bike } from '../../../../../core/models/bike.model';
 import { Car } from '../../../../../core/models/car.model';
 import { Scooter } from '../../../../../core/models/scooter.model';

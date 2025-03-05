@@ -1,1 +1,116 @@
-<p>vehicle-details works!</p>
+<mat-card *ngIf="vehicle" class="vehicle-details-card">
+  <mat-card-header>
+    <mat-card-title>{{ vehicle.model }}</mat-card-title>
+    <mat-card-subtitle>{{ vehicleType | titlecase }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="vehicle.imageUrl" alt="{{ vehicle.model }}" />
+  <mat-card-content>
+    <!-- Basic Vehicle Information -->
+    <p><strong>Manufacturer:</strong> {{ vehicle.manufacturer.name }}</p>
+    <p><strong>Acquisition Date:</strong> {{ vehicle.acquisitionDate }}</p>
+    <p><strong>Purchase Price:</strong> ${{ vehicle.purchasePrice }}</p>
+    <p><strong>Hourly Rate:</strong> ${{ vehicle.hourlyRate }}</p>
+
+    <!-- Specific Attributes -->
+    <ng-container *ngIf="vehicleType === 'bike'">
+      <p><strong>Range:</strong> {{ specificDetails.rangeKm }} km</p>
+    </ng-container>
+    <ng-container *ngIf="vehicleType === 'car'">
+      <p><strong>Description:</strong> {{ specificDetails.description }}</p>
+    </ng-container>
+    <ng-container *ngIf="vehicleType === 'scooter'">
+      <p><strong>Max Speed:</strong> {{ specificDetails.maxSpeedKmh }} km/h</p>
+    </ng-container>
+
+    <!-- Faults Section -->
+    <h3>Faults</h3>
+    <p class="instruction-text">
+      Below is a list of faults reported for this vehicle. You can add a new fault or delete an existing one.
+    </p>
+    <ng-container *ngIf="faults.length > 0; else noFaults">
+      <mat-table [dataSource]="faults" class="details-table">
+        <!-- Description Column -->
+        <ng-container matColumnDef="description">
+          <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+          <mat-cell *matCellDef="let fault"> {{ fault.description }} </mat-cell>
+        </ng-container>
+
+        <!-- Reported Date Column -->
+        <ng-container matColumnDef="reportedDate">
+          <mat-header-cell *matHeaderCellDef> Reported Date </mat-header-cell>
+          <mat-cell *matCellDef="let fault"> {{ fault.reportedDate | date: 'medium' }} </mat-cell>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+          <mat-cell *matCellDef="let fault">
+            <button mat-icon-button (click)="deleteFault(fault.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Definitions -->
+        <mat-header-row *matHeaderRowDef="faultColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: faultColumns;" class="details-row"></mat-row>
+      </mat-table>
+    </ng-container>
+    <ng-template #noFaults>
+      <p class="no-data-text">No faults reported for this vehicle.</p>
+    </ng-template>
+    <button mat-button color="primary" (click)="openAddFaultDialog()">Add Fault</button>
+
+    <!-- Rentals Section -->
+    <h3>Rentals</h3>
+    <p class="instruction-text">
+      Below is a list of rentals for this vehicle.
+    </p>
+    <ng-container *ngIf="rentals.length > 0; else noRentals">
+      <mat-table [dataSource]="rentals" class="details-table">
+        <!-- Start Date Column -->
+        <ng-container matColumnDef="startDate">
+          <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> {{ rental.startDate | date: 'medium' }} </mat-cell>
+        </ng-container>
+
+        <!-- End Date Column -->
+        <ng-container matColumnDef="endDate">
+          <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> {{ rental.endDate | date: 'medium' }} </mat-cell>
+        </ng-container>
+
+        <!-- Total Duration Column -->
+        <ng-container matColumnDef="totalDuration">
+          <mat-header-cell *matHeaderCellDef> Duration (Minutes) </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> {{ rental.totalDurationMinutes }} </mat-cell>
+        </ng-container>
+
+        <!-- Total Price Column -->
+        <ng-container matColumnDef="totalPrice">
+          <mat-header-cell *matHeaderCellDef> Total Price </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> ${{ rental.totalPrice }} </mat-cell>
+        </ng-container>
+
+        <!-- Client Name Column -->
+        <ng-container matColumnDef="clientName">
+          <mat-header-cell *matHeaderCellDef> Client Name </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> {{ rental.client.firstName }} {{ rental.client.lastName }} </mat-cell>
+        </ng-container>
+
+        <!-- Pick-Up Location Column -->
+        <ng-container matColumnDef="pickUpLocation">
+          <mat-header-cell *matHeaderCellDef> Pick-Up Location </mat-header-cell>
+          <mat-cell *matCellDef="let rental"> ({{ rental.pickUpLocation.latitude }}, {{ rental.pickUpLocation.longitude }}) </mat-cell>
+        </ng-container>
+
+        <!-- Header and Row Definitions -->
+        <mat-header-row *matHeaderRowDef="rentalColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: rentalColumns;" class="details-row"></mat-row>
+      </mat-table>
+    </ng-container>
+    <ng-template #noRentals>
+      <p class="no-data-text">No rentals recorded for this vehicle.</p>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

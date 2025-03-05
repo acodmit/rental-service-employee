@@ -21,6 +21,9 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <button mat-fab color="primary" (click)="openAddVehicleDialog('bike')" class="add-button">
+      <mat-icon>add</mat-icon>
+    </button>
   </mat-tab>
 
   <!-- Cars Tab -->
@@ -45,6 +48,9 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <button mat-fab color="primary" (click)="openAddVehicleDialog('car')" class="add-button">
+      <mat-icon>add</mat-icon>
+    </button>
   </mat-tab>
 
   <!-- Scooters Tab -->
@@ -69,17 +75,16 @@
         </mat-card-actions>
       </mat-card>
     </div>
+    <button mat-fab color="primary" (click)="openAddVehicleDialog('scooter')" class="add-button">
+      <mat-icon>add</mat-icon>
+    </button>
   </mat-tab>
 </mat-tab-group>
 
-<!-- Shared Action Buttons -->
-<div class="action-buttons">
-  <button mat-fab color="primary" (click)="openAddVehicleDialog(selectedTab)" class="add-button">
-    <mat-icon>add</mat-icon>
-  </button>
-  <button mat-fab color="accent" (click)="openFileInput()" class="upload-button">
-    <mat-icon>upload</mat-icon>
-    <span class="button-text">Upload CSV</span>
-  </button>
-  <input #fileInput type="file" accept=".csv" (change)="onFileSelected($event)" class="file-input" />
-</div>
+<!-- CSV Upload Button -->
+<button mat-fab color="accent" (click)="openFileInput()" class="upload-button">
+  <mat-icon>upload_file</mat-icon>
+</button>
+
+<!-- Hidden File Input -->
+<input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)" accept=".csv" />

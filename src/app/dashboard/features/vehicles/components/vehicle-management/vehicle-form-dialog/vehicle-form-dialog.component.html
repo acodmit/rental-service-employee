@@ -1,6 +1,16 @@
 <h2 mat-dialog-title>Add New {{ data.vehicleType | titlecase }}</h2>
 <mat-dialog-content>
   <form [formGroup]="vehicleForm">
+    <!-- Manufacturer Dropdown -->
+    <mat-form-field appearance="fill">
+      <mat-label>Manufacturer</mat-label>
+      <mat-select formControlName="manufacturerId" required>
+        <mat-option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">
+          {{ manufacturer.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Model</mat-label>
       <input matInput formControlName="model" required />
