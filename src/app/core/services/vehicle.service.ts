@@ -7,6 +7,7 @@ import { Scooter } from '../models/scooter.model';
 import { AuthService } from './auth.service';
 import {Fault} from '../models/fault.model';
 import {Rental} from '../models/rental.model';
+import {Vehicle} from '../models/vehicle.model';
 
 @Injectable({
   providedIn: 'root',
@@ -56,7 +57,6 @@ export class VehicleService {
     return this.http.delete<void>(`${this.baseUrl}/scooters/${id}`, this.createAuthHeaders());
   }
 
-
   // Fetch bike details by ID
   getBikeById(id: number): Observable<Bike> {
     return this.http.get<Bike>(`${this.baseUrl}/bikes/${id}`, this.createAuthHeaders());
@@ -105,6 +105,11 @@ export class VehicleService {
     // Include authentication headers
     const headers = this.createAuthHeaders().headers;
     return this.http.post(`${this.baseUrl}/vehicles/upload-csv`, formData, { headers });
+  }
+
+  // Update a vehicle
+  updateVehicle(id: number, updateData: Partial<Vehicle>): Observable<Vehicle> {
+    return this.http.patch<Vehicle>(`${this.baseUrl}/vehicles/${id}/hourly-rate`, updateData, this.createAuthHeaders());
   }
 
   private createAuthHeaders(): { headers: HttpHeaders } {

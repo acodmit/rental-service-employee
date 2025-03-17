@@ -1,10 +1,16 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import { RentalOverviewComponent } from './components/rental-overview/rental-overview.component';
 
-const routes: Routes = [{ path: 'vehicle-map', loadChildren: () => import('../vehicle-map/vehicle-map.module').then(m => m.VehicleMapModule) }];
+const routes: Routes = [
+  {
+    path: '',
+    component: RentalOverviewComponent,
+  }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RentalsRoutingModule { }
+export class RentalsRoutingModule {
+}

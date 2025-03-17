@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { VehicleMapRoutingModule } from './vehicle-map-routing.module';
 import { VehicleMapComponent } from './components/vehicle-map.component';
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 
 
 @NgModule({
@@ -11,7 +12,12 @@ import { VehicleMapComponent } from './components/vehicle-map.component';
   ],
   imports: [
     CommonModule,
-    VehicleMapRoutingModule
+    VehicleMapRoutingModule,
+    MatCard,
+    MatCardHeader,
+    MatCardContent,
+    MatCardTitle,
+    MatCardSubtitle
   ]
 })
 export class VehicleMapModule { }

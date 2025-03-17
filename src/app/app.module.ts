@@ -3,9 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withInterceptors} from '@angular/common/http';
-import { CoreModule } from './core/core.module'; // Import CoreModule
-import { errorInterceptor } from './core/interceptors/error.interceptor';
+import { CoreModule } from './core/core.module';
+import { BaseChartDirective } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,8 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule, // Ensure CoreModule is imported
+    CoreModule,
+    BaseChartDirective
   ],
   providers: [
     provideAnimationsAsync(),

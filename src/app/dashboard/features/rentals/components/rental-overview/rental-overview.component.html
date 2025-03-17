@@ -1,1 +1,63 @@
-<p>rental-overview works!</p>
+<mat-card class="rental-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">Rental Overview</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      This page provides an overview of all rentals.<br>
+      Use the search bar to filter the table by any column.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <!-- Search Bar -->
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (input)="applyFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+
+    <!-- Rentals Table -->
+    <mat-table [dataSource]="rentalDataSource" class="rental-table">
+      <!-- Table columns -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.id }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef> Start Date </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.startDate | date: 'medium' }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="endDate">
+        <mat-header-cell *matHeaderCellDef> End Date </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.endDate | date: 'medium' }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="totalDurationMinutes">
+        <mat-header-cell *matHeaderCellDef> Duration (Minutes) </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.totalDurationMinutes }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="totalPrice">
+        <mat-header-cell *matHeaderCellDef> Total Price </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> ${{ rental.totalPrice.toFixed(2) }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="vehicle">
+        <mat-header-cell *matHeaderCellDef> Vehicle </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.vehicle.model }} ({{ rental.vehicle.manufacturer.name }}) </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="client">
+        <mat-header-cell *matHeaderCellDef> Client </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> {{ rental.client.firstName }} {{ rental.client.lastName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="pickUpLocation">
+        <mat-header-cell *matHeaderCellDef> Pickup Location </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> ({{ rental.pickUpLocation.latitude }}, {{ rental.pickUpLocation.longitude }}) </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dropOffLocation">
+        <mat-header-cell *matHeaderCellDef> Dropoff Location </mat-header-cell>
+        <mat-cell *matCellDef="let rental"> ({{ rental.dropOffLocation.latitude }}, {{ rental.dropOffLocation.longitude }}) </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: columns;" class="rental-row"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+</mat-card>

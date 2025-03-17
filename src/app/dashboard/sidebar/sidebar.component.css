@@ -1,33 +1,41 @@
-/* sidebar.component.css */
-nav {
-    width: 200px;
-    background-color: #3f51b5; /* Match Material primary color */
-    color: white;
-    height: 100%;
-    padding: 16px;
+.sidebar-nav {
+  width: 240px;
+  background-color: #FFFFFF; /* White background */
+  color: #3f51b5; /* Primary blue text */
+  height: 100%;
+  padding: 16px;
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
 }
 
 ul {
-    list-style-type: none;
-    padding: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 li {
-    margin: 16px 0;
+  margin: 12px 0; /* Slightly smaller margin */
 }
 
 a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 8px;
-    border-radius: 4px;
+  color: #3f51b5; /* Primary blue text */
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
 
 a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: #E3F2FD; /* Light blue hover effect */
 }
 
 .active {
-    background-color: rgba(255, 255, 255, 0.2);
+  background-color: #E3F2FD; /* Light blue for active link */
+  font-weight: 500; /* Bold text for active link */
+}
+
+mat-icon {
+  margin-right: 12px;
+  color: #3f51b5; /* Primary blue icons */
 }

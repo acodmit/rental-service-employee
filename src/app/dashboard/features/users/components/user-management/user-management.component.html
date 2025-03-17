@@ -1,1 +1,113 @@
-<p>user-management works!</p>
+<mat-card class="user-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">User Management</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      Manage clients and employees here. Clients can be blocked/unblocked, and employees can be added, edited, or deleted.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <!-- Clients Section -->
+    <h3 class="section-title">Clients</h3>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="clientSearchTerm" (input)="applyClientFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-table [dataSource]="clientDataSource" class="user-table">
+      <!-- Table columns -->
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let client"> {{ client.username }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let client"> {{ client.firstName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let client"> {{ client.lastName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let client" class="email-cell"> {{ client.email }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let client"> {{ client.phoneNumber }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          <span [ngClass]="{'blocked': client.isBlocked, 'active': !client.isBlocked}">
+            {{ client.isBlocked ? 'Blocked' : 'Active' }}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          <button mat-button color="warn" (click)="toggleBlockStatus(client.id, !client.isBlocked)">
+            {{ client.isBlocked ? 'Unblock' : 'Block' }}
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="clientColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: clientColumns;" class="user-row"></mat-row>
+    </mat-table>
+    <mat-paginator #clientPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+    <!-- Employees Section -->
+    <h3 class="section-title">Employees</h3>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="employeeSearchTerm" (input)="applyEmployeeFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-raised-button color="primary" class="add-button" (click)="openEmployeeDialog('add')">
+      <mat-icon>add</mat-icon> Add Employee
+    </button>
+    <mat-table [dataSource]="employeeDataSource" class="user-table">
+      <!-- Table columns -->
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.username }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.firstName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.lastName }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+        <mat-cell *matCellDef="let employee" class="email-cell"> {{ employee.email }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="phoneNumber">
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.phoneNumber }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="role">
+        <mat-header-cell *matHeaderCellDef> Role </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{ employee.role }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let employee">
+          <button mat-icon-button color="primary" (click)="openEmployeeDialog('edit', employee)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteEmployee(employee.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="employeeColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: employeeColumns;" class="user-row"></mat-row>
+    </mat-table>
+    <mat-paginator #employeePaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+</mat-card>

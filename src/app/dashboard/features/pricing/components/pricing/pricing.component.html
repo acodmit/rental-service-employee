@@ -1,1 +1,40 @@
-<p>pricing works!</p>
+<mat-card class="rental-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">Set Rental Prices</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      Update the hourly rental rates for vehicles.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Loading Spinner -->
+    <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+
+    <!-- Vehicle Table -->
+    <div *ngIf="!isLoading">
+      <table class="vehicle-table">
+        <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Hourly Rate ($)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let vehicle of vehicles">
+          <td>
+            <div class="vehicle-info">
+              <span class="vehicle-model">{{ vehicle.model }}</span>
+              <span class="vehicle-manufacturer">{{ vehicle.manufacturer.name }}</span>
+            </div>
+          </td>
+          <td>
+            <mat-form-field appearance="outline" class="hourly-rate-input">
+              <mat-label>Hourly Rate</mat-label>
+              <input matInput type="number" [(ngModel)]="vehicle.hourlyRate" (change)="updateHourlyRate(vehicle)">
+            </mat-form-field>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card-content>
+</mat-card>

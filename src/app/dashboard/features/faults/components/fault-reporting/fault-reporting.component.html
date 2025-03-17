@@ -1,1 +1,43 @@
-<p>fault-reporting works!</p>
+<mat-card class="fault-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">Fault Reporting</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      Report and manage faults for vehicles.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Add Fault Button -->
+    <button mat-raised-button color="primary" class="add-button" (click)="openAddFaultDialog()">
+      <mat-icon>add</mat-icon> Add Fault
+    </button>
+
+    <!-- Faults Table -->
+    <mat-table [dataSource]="dataSource" class="fault-table">
+      <!-- Description Column -->
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let fault"> {{ fault.description }} </mat-cell>
+      </ng-container>
+
+      <!-- Reported Date Column -->
+      <ng-container matColumnDef="reportedDate">
+        <mat-header-cell *matHeaderCellDef> Reported Date </mat-header-cell>
+        <mat-cell *matCellDef="let fault"> {{ fault.reportedDate | date: 'medium' }} </mat-cell>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+        <mat-cell *matCellDef="let fault">
+          <button mat-icon-button color="warn" (click)="deleteFault(fault.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Header and Row Definitions -->
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" class="fault-row"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

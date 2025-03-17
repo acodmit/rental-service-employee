@@ -25,16 +25,16 @@ const routes: Routes = [
         data: { role: ['ADMIN', 'MANAGER'] }, // Allow ADMIN and MANAGER
       },
       {
-        path: 'users',
-        loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
-        canActivate: [RoleGuard],
-        data: { role: ['ADMIN'] }, // Allow only ADMIN
-      },
-      {
         path: 'manufacturers',
         loadChildren: () => import('./features/manufacturers/manufacturers.module').then(m => m.ManufacturersModule),
         canActivate: [RoleGuard],
-        data: { role: ['ADMIN'] }, // Allow only ADMIN
+        data: { role: ['ADMIN', 'MANAGER'] }, // Allow ADMIN and MANAGER
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./features/users/users.module').then(m => m.UsersModule),
+        canActivate: [RoleGuard],
+        data: { role: ['ADMIN', 'MANAGER'] }, // Allow ADMIN and MANAGER
       },
       {
         path: 'rentals',

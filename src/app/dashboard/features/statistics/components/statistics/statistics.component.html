@@ -1,1 +1,50 @@
-<p>statistics works!</p>
+<mat-card class="statistics-card">
+  <mat-card-header>
+    <mat-card-title class="page-title">Statistics</mat-card-title>
+    <mat-card-subtitle class="page-subtitle">
+      View revenue and fault statistics for vehicles.
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- Month Selection for Daily Revenue Chart -->
+    <div class="month-selection">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Month</mat-label>
+        <input matInput [(ngModel)]="selectedMonth" (ngModelChange)="onMonthChange($event)" placeholder="YYYY-MM">
+      </mat-form-field>
+    </div>
+
+    <!-- Daily Revenue Chart -->
+    <div class="chart-container">
+      <h3>Daily Revenue for {{ selectedMonth }}</h3>
+      <canvas baseChart
+              [datasets]="dailyRevenueData"
+              [labels]="dailyRevenueLabels"
+              [options]="lineChartOptions"
+              type="line">
+      </canvas>
+    </div>
+
+    <!-- Faults per Vehicle Chart -->
+    <div class="chart-container">
+      <h3>Number of Faults per Vehicle</h3>
+      <canvas baseChart
+              [datasets]="[{ data: faultsPerVehicleData, label: 'Faults' }]"
+              [labels]="faultsPerVehicleLabels"
+              [options]="barChartOptions"
+              type="bar">
+      </canvas>
+    </div>
+
+    <!-- Revenue by Vehicle Type Chart -->
+    <div class="chart-container">
+      <h3>Total Revenue by Vehicle Type</h3>
+      <canvas baseChart
+              [datasets]="[{ data: revenueByVehicleTypeData, label: 'Revenue' }]"
+              [labels]="revenueByVehicleTypeLabels"
+              [options]="barChartOptions"
+              type="bar">
+      </canvas>
+    </div>
+  </mat-card-content>
+</mat-card>

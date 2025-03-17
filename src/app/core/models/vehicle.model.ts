@@ -12,4 +12,5 @@ export interface Vehicle {
     manufacturer: Manufacturer;
     faults: Fault[];
     hourlyRate: number;
+    location: Location
 }

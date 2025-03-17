@@ -1,8 +1,25 @@
-/* header.component.css */
-.spacer {
-  flex: 1 1 auto;
+.header-toolbar {
+  background-color: #3f51b5; /* Primary blue */
+  color: white; /* White text */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 16px;
 }
 
-mat-toolbar {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+.app-name {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.spacer {
+  flex: 1 1 auto; /* Push buttons to the right */
+}
+
+button[mat-icon-button] {
+  color: white; /* White icons */
+  margin-left: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button[mat-icon-button]:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Light hover effect */
 }

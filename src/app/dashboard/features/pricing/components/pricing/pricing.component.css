@@ -1,0 +1,67 @@
+.rental-card {
+  margin: 16px;
+  padding: 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #3f51b5;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-top: 8px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* Table styling */
+.vehicle-table {
+  width: 100%;
+  border-collapse: collapse; /* Remove spacing between cells */
+}
+
+.vehicle-table th,
+.vehicle-table td {
+  padding: 12px; /* Add padding to cells */
+  text-align: left; /* Align text to the left */
+  border-bottom: 2px solid #ddd; /* Thicker and darker border for better visibility */
+}
+
+.vehicle-table th {
+  font-weight: 500;
+  background-color: #3f51b5; /* Primary color for header */
+  color: white; /* White text for header */
+}
+
+.vehicle-table tr:last-child td {
+  border-bottom: none; /* Remove border for the last row */
+}
+
+/* Vehicle info styling */
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-model {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.vehicle-manufacturer {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Input field styling */
+.hourly-rate-input {
+  width: 150px;
+}
+
+/* Loading spinner */
+mat-spinner {
+  margin: 24px auto;
+}

@@ -1,11 +1,13 @@
-<!-- header.component.html -->
-<mat-toolbar color="primary">
-  <span>Rental Service</span>
+<mat-toolbar color="primary" class="header-toolbar">
+  <span class="app-name">Rental Service</span>
   <span class="spacer"></span>
-  <button mat-icon-button routerLink="/dashboard">
+  <button mat-icon-button routerLink="/dashboard" matTooltip="Home">
     <mat-icon>home</mat-icon>
   </button>
-  <button mat-icon-button routerLink="/dashboard/account">
+  <button mat-icon-button routerLink="/dashboard/account" matTooltip="Account">
     <mat-icon>account_circle</mat-icon>
+  </button>
+  <button mat-icon-button (click)="logout()" matTooltip="Logout">
+    <mat-icon>logout</mat-icon>
   </button>
 </mat-toolbar>

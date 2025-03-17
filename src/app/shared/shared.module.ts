@@ -15,6 +15,7 @@ import {RouterLink} from '@angular/router';
 import { AccountComponent } from './account/account.component';
 import {MatDivider} from '@angular/material/divider';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
+import {MatTooltip} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     RouterLink,
     MatDivider,
     MatProgressSpinner,
+    MatTooltip,
   ],
   exports: [
     HeaderComponent,

@@ -1,39 +1,69 @@
-<nav>
-    <ul>
-        <!-- Admin Links -->
-        <li *ngIf="isAdmin || isManager">
-            <a routerLink="/dashboard/vehicles/vehicle-management" routerLinkActive="active">Vehicle Management</a>
-        </li>
-        <li *ngIf="isAdmin || isManager">
-            <a routerLink="/dashboard/vehicles/vehicle-list" routerLinkActive="active">Vehicle Details</a>
-        </li>
-        <li *ngIf="isAdmin || isManager">
-            <a routerLink="/dashboard/users" routerLinkActive="active">User Management</a>
-        </li>
-        <li *ngIf="isAdmin || isManager">
-            <a routerLink="/dashboard/manufacturers" routerLinkActive="active">Manufacturer Management</a>
-        </li>
+<nav class="sidebar-nav">
+  <ul>
+    <!-- Admin Links -->
+    <li *ngIf="isAdmin || isManager">
+      <a routerLink="/dashboard/vehicles/vehicle-management" routerLinkActive="active">
+        <mat-icon>directions_car</mat-icon>
+        <span>Vehicle Management</span>
+      </a>
+    </li>
+    <li *ngIf="isAdmin || isManager">
+      <a routerLink="/dashboard/vehicles/vehicle-list" routerLinkActive="active">
+        <mat-icon>list</mat-icon>
+        <span>Vehicle Details</span>
+      </a>
+    </li>
+    <li *ngIf="isAdmin || isManager">
+      <a routerLink="/dashboard/manufacturers/manufacturer-management" routerLinkActive="active">
+        <mat-icon>factory</mat-icon>
+        <span>Manufacturer Management</span>
+      </a>
+    </li>
+    <li *ngIf="isAdmin || isManager">
+      <a routerLink="/dashboard/users/user-management" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>User Management</span>
+      </a>
+    </li>
 
-        <!-- Operator Links -->
-        <li *ngIf="isOperator || isManager">
-            <a routerLink="/dashboard/rentals" routerLinkActive="active">Rental Overview</a>
-        </li>
-        <li *ngIf="isOperator || isManager">
-            <a routerLink="/dashboard/clients" routerLinkActive="active">Client Management</a>
-        </li>
-        <li *ngIf="isOperator || isManager">
-            <a routerLink="/dashboard/faults" routerLinkActive="active">Fault Reporting</a>
-        </li>
-        <li *ngIf="isOperator || isManager">
-            <a routerLink="/dashboard/vehicle-map" routerLinkActive="active">Vehicle Map</a>
-        </li>
+    <!-- Operator Links -->
+    <li *ngIf="isOperator || isManager">
+      <a routerLink="/dashboard/rentals" routerLinkActive="active">
+        <mat-icon>local_shipping</mat-icon>
+        <span>Rental Overview</span>
+      </a>
+    </li>
+    <li *ngIf="isOperator || isManager">
+      <a routerLink="/dashboard/vehicle-map" routerLinkActive="active">
+        <mat-icon>map</mat-icon>
+        <span>Vehicle Map</span>
+      </a>
+    </li>
+    <li *ngIf="isOperator || isManager">
+      <a routerLink="/dashboard/clients" routerLinkActive="active">
+        <mat-icon>person</mat-icon>
+        <span>Client Management</span>
+      </a>
+    </li>
+    <li *ngIf="isOperator || isManager">
+      <a routerLink="/dashboard/faults" routerLinkActive="active">
+        <mat-icon>report_problem</mat-icon>
+        <span>Fault Reporting</span>
+      </a>
+    </li>
 
-        <!-- Manager Links -->
-        <li *ngIf="isManager">
-            <a routerLink="/dashboard/statistics" routerLinkActive="active">Statistics</a>
-        </li>
-        <li *ngIf="isManager">
-            <a routerLink="/dashboard/pricing" routerLinkActive="active">Pricing</a>
-        </li>
-    </ul>
+    <!-- Manager Links -->
+    <li *ngIf="isManager">
+      <a routerLink="/dashboard/statistics" routerLinkActive="active">
+        <mat-icon>bar_chart</mat-icon>
+        <span>Statistics</span>
+      </a>
+    </li>
+    <li *ngIf="isManager">
+      <a routerLink="/dashboard/pricing" routerLinkActive="active">
+        <mat-icon>attach_money</mat-icon>
+        <span>Pricing</span>
+      </a>
+    </li>
+  </ul>
 </nav>

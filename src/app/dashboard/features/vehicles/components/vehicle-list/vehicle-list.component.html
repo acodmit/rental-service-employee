@@ -11,32 +11,33 @@
 
     <!-- Bikes Table -->
     <h3 class="table-title">Bikes</h3>
-    <mat-table [dataSource]="bikes" class="vehicle-table">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="bikeSearchTerm" (input)="applyBikeFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-table [dataSource]="bikeDataSource" class="vehicle-table">
+      <!-- Table columns -->
       <ng-container matColumnDef="model">
         <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.model }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="manufacturer">
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.manufacturer.name }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.acquisitionDate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="hourlyRate">
         <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
         <mat-cell *matCellDef="let bike"> ${{ bike.hourlyRate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="rangeKm">
         <mat-header-cell *matHeaderCellDef> Range (km) </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.rangeKm }} km </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="isBroken">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
         <mat-cell *matCellDef="let bike">
@@ -45,7 +46,6 @@
           </mat-icon>
         </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell *matCellDef="let bike">
@@ -54,39 +54,40 @@
           </button>
         </mat-cell>
       </ng-container>
-
       <mat-header-row *matHeaderRowDef="bikeColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: bikeColumns;" class="vehicle-row"></mat-row>
     </mat-table>
+    <mat-paginator #bikePaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
     <!-- Cars Table -->
     <h3 class="table-title">Cars</h3>
-    <mat-table [dataSource]="cars" class="vehicle-table">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="carSearchTerm" (input)="applyCarFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-table [dataSource]="carDataSource" class="vehicle-table">
+      <!-- Table columns -->
       <ng-container matColumnDef="model">
         <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.model }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="manufacturer">
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.manufacturer.name }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.acquisitionDate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="hourlyRate">
         <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
         <mat-cell *matCellDef="let car"> ${{ car.hourlyRate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.description }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="isBroken">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
         <mat-cell *matCellDef="let car">
@@ -95,7 +96,6 @@
           </mat-icon>
         </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell *matCellDef="let car">
@@ -104,39 +104,40 @@
           </button>
         </mat-cell>
       </ng-container>
-
       <mat-header-row *matHeaderRowDef="carColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: carColumns;" class="vehicle-row"></mat-row>
     </mat-table>
+    <mat-paginator #carPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
     <!-- Scooters Table -->
     <h3 class="table-title">Scooters</h3>
-    <mat-table [dataSource]="scooters" class="vehicle-table">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search by any column</mat-label>
+      <input matInput [(ngModel)]="scooterSearchTerm" (input)="applyScooterFilter()" placeholder="Enter search term">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <mat-table [dataSource]="scooterDataSource" class="vehicle-table">
+      <!-- Table columns -->
       <ng-container matColumnDef="model">
         <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> {{ scooter.model }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="manufacturer">
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> {{ scooter.manufacturer.name }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> {{ scooter.acquisitionDate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="hourlyRate">
         <mat-header-cell *matHeaderCellDef> Hourly Rate </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> ${{ scooter.hourlyRate }} </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="maxSpeedKmh">
         <mat-header-cell *matHeaderCellDef> Max Speed (km/h) </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> {{ scooter.maxSpeedKmh }} km/h </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="isBroken">
         <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
         <mat-cell *matCellDef="let scooter">
@@ -145,7 +146,6 @@
           </mat-icon>
         </mat-cell>
       </ng-container>
-
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
         <mat-cell *matCellDef="let scooter">
@@ -154,10 +154,10 @@
           </button>
         </mat-cell>
       </ng-container>
-
       <mat-header-row *matHeaderRowDef="scooterColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: scooterColumns;" class="vehicle-row"></mat-row>
     </mat-table>
+    <mat-paginator #scooterPaginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 
   </mat-card-content>
 </mat-card>

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Add Fault</h2>
+<mat-dialog-content>
+  <form [formGroup]="faultForm">
+    <!-- Vehicle Selection Dropdown -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Select Vehicle</mat-label>
+      <mat-select formControlName="vehicleId" required>
+        <mat-option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+          {{ vehicle.model }} ({{ vehicle.manufacturer.name }})
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="faultForm.get('vehicleId')?.hasError('required')">
+        Vehicle is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Fault Description Textarea -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" required></textarea>
+      <mat-error *ngIf="faultForm.get('description')?.hasError('required')">
+        Description is required.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onSave()" color="primary" [disabled]="faultForm.invalid">Save</button>
+</mat-dialog-actions>
