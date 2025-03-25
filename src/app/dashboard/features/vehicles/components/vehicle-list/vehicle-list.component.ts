@@ -28,10 +28,9 @@ export class VehicleListComponent implements OnInit {
   scooterSearchTerm: string = '';
 
   // Column definitions
-  bikeColumns: string[] = ['model', 'manufacturer', 'acquisitionDate', 'hourlyRate', 'rangeKm', 'isBroken', 'actions'];
-  carColumns: string[] = ['model', 'manufacturer', 'acquisitionDate', 'hourlyRate', 'description', 'isBroken', 'actions'];
-  scooterColumns: string[] = ['model', 'manufacturer', 'acquisitionDate', 'hourlyRate', 'maxSpeedKmh', 'isBroken', 'actions'];
-
+  bikeColumns = ['model', 'manufacturer', 'location', 'acquisitionDate', 'hourlyRate', 'rangeKm', 'isBroken', 'actions'];
+  carColumns = ['model', 'manufacturer', 'location', 'acquisitionDate', 'hourlyRate', 'description', 'isBroken', 'actions'];
+  scooterColumns = ['model', 'manufacturer', 'location', 'acquisitionDate', 'hourlyRate', 'maxSpeedKmh', 'isBroken', 'actions'];
   // Paginators
   @ViewChild('bikePaginator') bikePaginator!: MatPaginator;
   @ViewChild('carPaginator') carPaginator!: MatPaginator;

@@ -26,6 +26,10 @@
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.manufacturer.name }} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Current Location </mat-header-cell>
+        <mat-cell *matCellDef="let bike"> {{ bike.location?.name || 'Unknown' }} </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
         <mat-cell *matCellDef="let bike"> {{ bike.acquisitionDate }} </mat-cell>
@@ -76,6 +80,10 @@
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.manufacturer.name }} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Current Location </mat-header-cell>
+        <mat-cell *matCellDef="let car"> {{ car.location?.name || 'Unknown' }} </mat-cell>
+      </ng-container>
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
         <mat-cell *matCellDef="let car"> {{ car.acquisitionDate }} </mat-cell>
@@ -125,6 +133,10 @@
       <ng-container matColumnDef="manufacturer">
         <mat-header-cell *matHeaderCellDef> Manufacturer </mat-header-cell>
         <mat-cell *matCellDef="let scooter"> {{ scooter.manufacturer.name }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="location">
+        <mat-header-cell *matHeaderCellDef> Current Location </mat-header-cell>
+        <mat-cell *matCellDef="let scooter"> {{ scooter.location?.name || 'Unknown' }} </mat-cell>
       </ng-container>
       <ng-container matColumnDef="acquisitionDate">
         <mat-header-cell *matHeaderCellDef> Acquisition Date </mat-header-cell>
